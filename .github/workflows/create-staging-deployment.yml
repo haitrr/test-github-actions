@@ -11,13 +11,14 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v3
+        uses: devops-infra/action-pull-request@v0.5.5
         with:
-          base: staging
-          branch: dev
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          source_branch: dev
+          target_branch: staging
           id: create_pr
           title: "$(date +%Y%m%d%H%M) Staging Deployment"
 
       - name: Get pull request URL
         id: pr_url
-        run: echo "Pull Request URL ${{ steps.create_pr.pull-request-url }}"
+        run: echo "Pull Request URL ${{ steps.create_pr.url }}"
