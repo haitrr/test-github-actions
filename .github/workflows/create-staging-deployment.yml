@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
+  create-deployment:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -14,7 +14,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           base: staging
-          head: dev
+          branch: dev
           title: "$(date +%Y%m%d%H%M) Staging Deployment"
 
       - name: Get pull request URL
