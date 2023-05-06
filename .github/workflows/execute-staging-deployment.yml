@@ -1,0 +1,21 @@
+name: Deploy to Staging
+
+on:
+  push:
+    branches:
+      - staging
+    paths:
+      - "**"
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: "github.event_name == 'push' && github.ref == 'refs/heads/staging' && github.event.head_commit.message =~ /\\d{4}-\\d{2}-\\d{2} Staging Deployment/"
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to staging environment
+        # TODO: trigger deployment
+        run: echo Deploying Staging
