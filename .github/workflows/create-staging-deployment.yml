@@ -9,6 +9,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+      
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
       - name: Create pull request
         uses: devops-infra/action-pull-request@v0.5.5
@@ -17,7 +21,7 @@ jobs:
           source_branch: dev
           target_branch: staging
           id: create_pr
-          title: "$(date +%Y%m%d%H%M) Staging Deployment"
+          title: ${{ steps.date.outputs.date }} Staging Deployment
 
       - name: Get pull request URL
         id: pr_url
