@@ -22,7 +22,3 @@ jobs:
           target_branch: prod
           id: create_pr
           title: ${{ steps.date.outputs.date }} Production Deployment
-
-      - name: Get pull request URL
-        id: pr_url
-        run: echo "Pull Request URL ${{ steps.create_pr.url }}"
