@@ -1,0 +1,18 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - prod
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/staging' && github.event.head_commit.message =~ /\\d{4}-\\d{2}-\\d{2} Staging Deployment/ }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to prod environment
+        # TODO: trigger deployment
+        run: echo Deploying Prod
